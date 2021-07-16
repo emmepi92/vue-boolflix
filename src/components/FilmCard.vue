@@ -6,7 +6,7 @@
 
             <div class="info-film-container">
                 <h4>{{ film.title }}</h4>
-                <div> Titolo Originale: {{ film.original_title }}</div>
+                <div>Titolo Originale: {{ film.original_title }}</div>
                 <div>Lingua: {{ film.original_language }}</div>
                 <div>Voto: {{ film.vote_average }}</div>   
             </div>
@@ -29,7 +29,11 @@ export default {
     height: 450px;
     width: 300px;
     position: relative;
-    margin: 2px;
+    margin: 5px;
+
+    &:hover .info-film-container {
+            opacity: 1;   
+    }
 
     img {
         width: 100%;
@@ -43,12 +47,7 @@ export default {
         opacity: 0;
         width: 100%;
         background-color: rgba(0,0,0,0.6);
-        border-radius: 20px;
-
-
-        &:hover {
-            opacity: 1;
-        }
+        border-radius: 10px;
     }
 }
 

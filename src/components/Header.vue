@@ -13,11 +13,11 @@
         </div>
 
         <div class="info-container">
-            <div>Cerca</div>
-            <input type="text">
-            <div>Bambini</div>
-            <div>Notifiche</div>
-            <div>Profilo</div>
+            <input type="text" v-model="inputText">
+            <button @click="$emit('search', inputText)">Cerca</button>
+            <div><a href="#">Bambini</a></div>
+            <div><a href="#">Notifiche</a></div>
+            <div><a href="#">Profilo</a></div>
         </div>
 
     </div>
@@ -25,7 +25,13 @@
 
 <script>
 export default {
-name:'Header'
+    name:'Header'
+    ,
+    data () {
+        return {
+            inputText:''
+        }
+    }
 }
 </script>
 
@@ -53,6 +59,7 @@ name:'Header'
 
     .info-container {
         display: flex;
+        align-items: center;
 
         * {
             margin-left: 12px;
