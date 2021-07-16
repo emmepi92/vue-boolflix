@@ -1,24 +1,41 @@
 <template>
     <div>
         <div class="film-content">
-            <img src="../img/en.jpg" alt="">
-            <img src="../img/it.jpg" alt="">
-            <img src="../img/us.jpg" alt="">
-
-
-
-
             <img :src="getSrc(film.poster_path)" alt="">            
 
             <div class="info-film-container">
                 <h3>{{ film.title }} {{ film.name }}</h3>
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
-                <div>Nazione: 
+                <div>Nazione:
+
                     <span v-if="film.original_language === 'it'">
-                    <!-- <img src="../img/flags/it.jpg" alt="">  -->
-                    </span>                    
-                    {{ film.original_language }}
-                    <img :src="getFlag(film.original_language)" alt="">
+                        <img src="../img/it.jpg" alt="">
+                    </span>
+
+                    <span v-if="film.original_language === 'en'">
+                        <img src="../img/en.jpg" alt="">
+                    </span>
+
+                    <span v-if="film.original_language === 'us'">
+                        <img src="../img/us.jpg" alt="">
+                    </span>
+
+                    <span v-if="film.original_language === 'fr'">
+                        <img src="../img/fr.jpg" alt="">
+                    </span>
+
+                    <span v-if="film.original_language === 'es'">
+                        <img src="../img/es.jpg" alt="">
+                    </span>
+
+                    <span v-else>
+                        {{film.original_language}}
+
+                    </span>
+
+                    <!-- metodo che non funziona -->
+                    <!-- <img :src="getFlag(film.original_language)" alt=""> -->
+
                 </div>
 
                 <div>
@@ -29,7 +46,6 @@
                     <div v-if="vote===3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
                     <div v-if="vote===4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
                     <div v-if="vote===5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    Voto: {{ film.vote_average }}
                     
                 </div>   
             </div>
@@ -46,12 +62,13 @@ export default {
     methods: {
         getSrc (finalSrc) {
             return 'https://image.tmdb.org/t/p/w342'+ finalSrc;
-        }, // da ottenere ../img/it.jpg
-        getFlag (lang) {
-            let src = "../img/" + lang + ".jpg";
-            console.log(src) // nel console.log escono i src corretti
-            return src;          
-        }
+        }, 
+        // da ottenere ../img/it.jpg  => non funzia
+        // getFlag (lang) {
+        //     let src = "../img/" + lang + ".jpg";
+        //     console.log(src) // nel console.log escono i src corretti
+        //     return src;          
+        // }
     },
     data() {
         return {
