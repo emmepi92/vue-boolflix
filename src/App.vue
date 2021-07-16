@@ -23,32 +23,37 @@ export default {
   data() {
     return {
       films:[],
-      apiCall:'https://api.themoviedb.org/3/search/movie?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=love',
+      apiToCall:'https://api.themoviedb.org/3/movie/popular?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4',
       newInputText: ''
     }
   },
   computed : {
-    // al variare di newInputText => aggionrare automaticamente => auguri!
+    // al variare di newInputText => aggiornare automaticamente => auguri!
   }, 
   created () {
-    //lancio la funziona chiamata con il paramentro della chiamata 
-    this.callApi (this.apiCall)
+    //chiamata Api con i film più popolari
+    this.callApi (this.apiToCall)
   },
   methods: {
-    //nuovo parametro
+    //genero url nuova chiamata
     newSearch (inputText) {
-      let apiCall = 'https://api.themoviedb.org/3/search/movie?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
-      apiCall += inputText;
-      this.callApi(apiCall)
+      let apiToCallNew = 'https://api.themoviedb.org/3/search/multi?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
+      apiToCallNew += inputText;
+
+      //chiamo l'api
+      this.callApi(apiToCallNew);
+
+      //test per il computed
+      this.newInputToSearch(inputText)
     },
     //funzione per chiamare un Api
-    //il paramentro è la nuova query
+    //il paramentro è il nuovo url con query annessa
     callApi (newQuery) {
-      axios.get(newQuery).then((result)=>{
-      this.films= result.data.results;
-    })
-      //------------------------
+        axios.get(newQuery).then((result)=>{
+        this.films= result.data.results;
+      })
     },
+
     //serve per il computed, se si riesce a farlo funzionare
     newInputToSearch (inputText) {
       this.newInputText = inputText;

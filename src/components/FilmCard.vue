@@ -13,8 +13,8 @@
             <!-- <img src="https://image.tmdb.org/t/p/w342/hQq8xZe5uLjFzSBt4LanNP7SQjl.jpg" alt=""> -->
 
             <div class="info-film-container">
-                <h3>{{ film.title }}</h3>
-                <div>Titolo Originale: {{ film.original_title }}</div>
+                <h3>{{ film.title }} {{ film.name }}</h3>
+                <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
                 <div>Lingua: {{ film.original_language }}</div>
                 <div>Voto: {{ film.vote_average }}</div>   
             </div>
@@ -56,14 +56,14 @@ export default {
     }
 
     .info-film-container {
-        padding: 12px 0;
+        padding: 25px 0;
         position: absolute;
         text-align: center;
-        top:50%;
+        top:0;
         opacity: 0;
         width: 100%;
+        height: 100%;
         background-color: rgba(0,0,0,0.7);
-        border-radius: 10px;
     }
 }
 
