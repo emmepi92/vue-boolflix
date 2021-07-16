@@ -34,11 +34,11 @@ name:'Header'
 .header-container {
     display: flex;
     align-items: center;
-    font-size: 18px;
-    padding: 12px 24px;
+    font-size: 15px;
+    padding: 6px 12px;
 
     img {
-        width: 200px;
+        width: 150px;
     }
 
     .nav-menu {

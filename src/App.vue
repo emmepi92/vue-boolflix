@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="fluid-container">
+
     <Header />
-    <Main />
+    <Main :films='films' />
     
   </div>
 </template>
