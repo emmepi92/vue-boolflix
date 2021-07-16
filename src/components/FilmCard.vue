@@ -8,11 +8,17 @@
                 - poster_path in film
              -->
             <img :src="getSrc(film.poster_path)" alt="">
+            
 
             <div class="info-film-container">
                 <h3>{{ film.title }} {{ film.name }}</h3>
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
-                <div>Lingua: {{ film.original_language }}</div>
+                <div>Nazione: 
+                    
+                    <img :src="getFlag(film.original_language)" alt="">
+                    {{ film.original_language }}
+                </div>
+
                 <div>
                     <div v-if="vote===0"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
                     <div v-if="vote===1"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
@@ -34,18 +40,29 @@ export default {
     props: {
         film:Object
     },
+    // computed: {
+    //     srcLan() {
+    //         let src = '../img/flags/';
+    //         src += this.film.original_language;
+    //         src += '.jpg';
+    //         return src
+    //     }
+    // },
     methods: {
         getSrc (finalSrc) {
             let src = 'https://image.tmdb.org/t/p/w342';
             src += finalSrc;
             return src
-        },
-        getStars () {
-            this.vote
+        }, // da ottenere ../img/flags/it.jpg
+        getFlag (lang) {
+            let src = '../img/flags/';
+            src += lang;
+            src += '.jpg';
+            console.log(src) // nel console.log escono i src corretti
+            return src;
+
+            // return '../img/flags/' + lang + '.jpg'            
         }
-    },
-    created () {
-        console.log(this.vote)
     },
     data() {
         return {
@@ -69,11 +86,10 @@ export default {
 
     img {
         width: 100%;
-
     }
 
     .info-film-container {
-        padding: 25px 0;
+        padding-top: 100px;
         position: absolute;
         text-align: center;
         top:0;
@@ -81,6 +97,14 @@ export default {
         width: 100%;
         height: 100%;
         background-color: rgba(0,0,0,0.7);
+
+        div {
+
+            img {
+                width: 30px;
+                border-radius: 5px;
+            }
+        }
     }
 }
 
