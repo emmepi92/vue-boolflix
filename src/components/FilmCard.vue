@@ -13,7 +13,16 @@
                 <h3>{{ film.title }} {{ film.name }}</h3>
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
                 <div>Lingua: {{ film.original_language }}</div>
-                <div>Voto: {{ film.vote_average }}</div>   
+                <div>
+                    <div v-if="vote===0"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                    <div v-if="vote===1"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                    <div v-if="vote===2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                    <div v-if="vote===3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
+                    <div v-if="vote===4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                    <div v-if="vote===5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    Voto: {{ film.vote_average }}
+                    
+                </div>   
             </div>
         </div>
     </div>
@@ -30,6 +39,17 @@ export default {
             let src = 'https://image.tmdb.org/t/p/w342';
             src += finalSrc;
             return src
+        },
+        getStars () {
+            this.vote
+        }
+    },
+    created () {
+        console.log(this.vote)
+    },
+    data() {
+        return {
+            vote: Math.round(this.film.vote_average / 2),
         }
     }
 }
