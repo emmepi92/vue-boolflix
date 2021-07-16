@@ -1,28 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Header />
+    <Main />
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Main from "./components/Main.vue"
+import Header from "./components/Header.vue"
+
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Main,
+    Header
+
+  },
+  data() {
+    return {
+      films:[]
+    }
+  },
+  created () {
+    axios.get('https://api.themoviedb.org/3/search/movie?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=ritorno+al+futuro').then((result)=>{
+      this.films= result.data.results;
+      console.log(this.films)  //controllare la lista, cancellare dopo
+    })
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import url('./style/app.scss');
+
 </style>
