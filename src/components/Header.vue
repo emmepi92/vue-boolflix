@@ -3,6 +3,7 @@
 
         <img src="../img/logo-net.jpg" alt="">
         
+        
         <div class="nav-menu">
             <div><a href="#">Home</a></div>
             <div><a href="#">Serie Tv</a></div>
@@ -13,10 +14,11 @@
         </div>
 
         <div class="info-container">
+            <i class="fas fa-search"></i>
             <input type="text" v-model="inputText">
             <button @click="$emit('search', inputText)">Cerca</button>
             <div><a href="#">Bambini</a></div>
-            <div><a href="#">Notifiche</a></div>
+            <div><i class="fas fa-bell"></i></div>
             <div><a href="#">Profilo</a></div>
         </div>
 
@@ -24,6 +26,7 @@
 </template>
 
 <script>
+
 export default {
     name:'Header'
     ,
@@ -54,7 +57,6 @@ export default {
         * {
             margin-left: 12px;
         }
-    
     }
 
     .info-container {
@@ -64,7 +66,16 @@ export default {
         * {
             margin-left: 12px;
         }
+        
+        .fa-search {
+            font-size: 20px;
+        }
 
+        div {
+            .fa-bell {
+                font-size: 20px;
+            }
+        }
     }
 }
 

@@ -1,8 +1,6 @@
 <template>
     <div>
         <div class="film-content">
-
-
             <!-- 
                 src composta da 
                 - https://image.tmdb.org/t/p/
@@ -10,7 +8,6 @@
                 - poster_path in film
              -->
             <img :src="getSrc(film.poster_path)" alt="">
-            <!-- <img src="https://image.tmdb.org/t/p/w342/hQq8xZe5uLjFzSBt4LanNP7SQjl.jpg" alt=""> -->
 
             <div class="info-film-container">
                 <h3>{{ film.title }} {{ film.name }}</h3>
