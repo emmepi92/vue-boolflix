@@ -1,6 +1,12 @@
 <template>
     <div>
         <div class="film-content">
+            <img src="../img/en.jpg" alt="">
+            <img src="../img/it.jpg" alt="">
+            <img src="../img/us.jpg" alt="">
+
+
+
 
             <img :src="getSrc(film.poster_path)" alt="">            
 
@@ -8,7 +14,7 @@
                 <h3>{{ film.title }} {{ film.name }}</h3>
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
                 <div>Nazione: 
-                    <span v-if="film.original_language === it">
+                    <span v-if="film.original_language === 'it'">
                     <!-- <img src="../img/flags/it.jpg" alt="">  -->
                     </span>                    
                     {{ film.original_language }}
@@ -37,20 +43,12 @@ export default {
     props: {
         film:Object
     },
-    // computed: {
-    //     srcLan() {
-    //         let src = '../img/flags/';
-    //         src += this.film.original_language;
-    //         src += '.jpg';
-    //         return src
-    //     }
-    // },
     methods: {
         getSrc (finalSrc) {
             return 'https://image.tmdb.org/t/p/w342'+ finalSrc;
-        }, // da ottenere ../img/flags/it.jpg
+        }, // da ottenere ../img/it.jpg
         getFlag (lang) {
-            let src = "./img/flags/" + lang + ".jpg";
+            let src = "../img/" + lang + ".jpg";
             console.log(src) // nel console.log escono i src corretti
             return src;          
         }

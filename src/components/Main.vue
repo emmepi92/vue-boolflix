@@ -2,7 +2,7 @@
     <div class="films-container">
         <FilmCard class="single-film"
         v-for="film in films"
-        :key="film-id"
+        :key="film.id"
         :film="film" />
     
     </div>
