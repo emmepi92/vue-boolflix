@@ -24,41 +24,28 @@ export default {
     return {
       films:[],
       apiToCall:'https://api.themoviedb.org/3/movie/popular?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4',
-      newInputText: ''
     }
   },
-  computed : {
-    // al variare di newInputText => aggiornare automaticamente => auguri!
-  }, 
   created () {
     //chiamata Api con i film più popolari
     this.callApi (this.apiToCall)
   },
   methods: {
-    //genero url nuova chiamata
+    //genero url della nuova chiamata
     newSearch (inputText) {
       let apiToCallNew = 'https://api.themoviedb.org/3/search/multi?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
       apiToCallNew += inputText;
 
       //chiamo l'api
       this.callApi(apiToCallNew);
-
-      //test per il computed
-      this.newInputToSearch(inputText)
     },
-    //funzione per chiamare un Api
-    //il paramentro è il nuovo url con query annessa
+    //funzione per chiamare un Api con una nuova query
+    //paramentro: query da passare
     callApi (newQuery) {
         axios.get(newQuery).then((result)=>{
         this.films= result.data.results;
       })
-    },
-
-    //serve per il computed, se si riesce a farlo funzionare
-    newInputToSearch (inputText) {
-      this.newInputText = inputText;
     }
-
   }
 }
 </script>

@@ -4,75 +4,40 @@
             <img :src="getSrc(film.poster_path)" alt="">            
 
             <div class="info-film-container">
+
                 <h3>{{ film.title }} {{ film.name }}</h3>
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
-                <div>Nazione:
 
-                    <span v-if="film.original_language === 'it'">
-                        <img src="../img/it.jpg" alt="">
-                    </span>
-
-                    <span v-if="film.original_language === 'en'">
-                        <img src="../img/en.jpg" alt="">
-                    </span>
-
-                    <span v-if="film.original_language === 'us'">
-                        <img src="../img/us.jpg" alt="">
-                    </span>
-
-                    <span v-if="film.original_language === 'fr'">
-                        <img src="../img/fr.jpg" alt="">
-                    </span>
-
-                    <span v-if="film.original_language === 'es'">
-                        <img src="../img/es.jpg" alt="">
-                    </span>
-
-                    <span v-else>
-                        {{film.original_language}}
-
-                    </span>
-
-                    <!-- metodo che non funziona -->
-                    <!-- <img :src="getFlag(film.original_language)" alt=""> -->
-
-                </div>
-
-                <div>
-
-                    <div v-if="vote===0"><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                    <div v-if="vote===1"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                    <div v-if="vote===2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                    <div v-if="vote===3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-                    <div v-if="vote===4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-                    <div v-if="vote===5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    
-                </div>   
+                <Language :language='film.original_language' />   
+                          
+                <Stars :stars="stars" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Stars from './Stars.vue'
+import Language from './Language.vue'
+
+
 export default {
     name:'FilmCard',
+    components:{
+        Stars,
+        Language
+    },
     props: {
         film:Object
     },
     methods: {
         getSrc (finalSrc) {
             return 'https://image.tmdb.org/t/p/w342'+ finalSrc;
-        }, 
-        // da ottenere ../img/it.jpg  => non funzia
-        // getFlag (lang) {
-        //     let src = "../img/" + lang + ".jpg";
-        //     console.log(src) // nel console.log escono i src corretti
-        //     return src;          
-        // }
+        },
     },
     data() {
         return {
-            vote: Math.round(this.film.vote_average / 2),
+            stars: Math.round(this.film.vote_average / 2),
         }
     }
 }
@@ -103,14 +68,6 @@ export default {
         width: 100%;
         height: 100%;
         background-color: rgba(0,0,0,0.7);
-
-        div {
-
-            img {
-                width: 30px;
-                border-radius: 5px;
-            }
-        }
     }
 }
 
