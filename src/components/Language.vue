@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span>Nazione: 
+        <span>Lingua: 
             
             <span v-if="language === 'it'">
                 <img src="../img/it.jpg" alt="">
