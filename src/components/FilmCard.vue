@@ -1,14 +1,17 @@
 <template>
     <div>
         <div class="film-content">
-            <img :src="getSrc(film.poster_path)" alt="">            
+            <img :src="getSrc(film.poster_path)" :alt="film.original_title || film.original_name ">            
 
             <div class="info-film-container">
 
                 <h3>{{ film.title }} {{ film.name }}</h3>
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
 
-                <Language :language='film.original_language' /> 
+                <div>Lingua: 
+                    <img :src="getLanguage(film.original_language)" alt="Lingua"> 
+                </div>
+
                 <div>
                     Voto: 
                     <span v-for="star in stars" :key="star">
@@ -24,14 +27,8 @@
 </template>
 
 <script>
-import Language from './Language.vue'
-
-
 export default {
     name:'FilmCard',
-    components:{
-        Language
-    },
     props: {
         film:Object
     },
@@ -39,12 +36,14 @@ export default {
         stars() {
             return Math.round(this.film.vote_average / 2)
         }
-
     },
     methods: {
         getSrc (finalSrc) {
             return 'https://image.tmdb.org/t/p/w342'+ finalSrc;
         },
+        getLanguage(lang) {
+            return require("../img/" + lang + ".jpg")
+        }
     },
 }
 </script>
@@ -75,6 +74,11 @@ export default {
         width: 100%;
         height: 100%;
         background-color: rgba(0,0,0,0.7);
+
+        img {
+            width: 30px;
+            border: 1px solid #555;
+        }
     }
 }
 
