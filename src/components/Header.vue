@@ -5,11 +5,11 @@
         
         
         <div class="nav-menu">
-            <div><a href="#">Home</a></div>
-            <div><a href="#">Serie Tv</a></div>
-            <div><a href="#">Film</a></div>
-            <div><a href="#">Originali</a></div>
-            <div><a href="#">Aggiunti di recente</a></div>  
+            <div><a href="#" @click="$emit('show','/tv/on_the_air')">Home</a></div>
+            <div><a href="#" @click="$emit('show','/discover/tv')">Serie Tv</a></div>
+            <div><a href="#" @click="$emit('show','/movie/top_rated')">Film</a></div>
+            <div><a href="#" @click="$emit('show','/discover/tv')">Originali</a></div>
+            <div><a href="#" @click="$emit('show','/movie/upcoming')">Aggiunti di recente</a></div>  
             <div><a href="#">La mia lista</a></div>
         </div>
 
@@ -48,6 +48,7 @@ export default {
 
     img {
         width: 150px;
+        cursor: pointer;
     }
 
     .nav-menu {

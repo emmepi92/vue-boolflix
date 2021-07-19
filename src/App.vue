@@ -1,7 +1,7 @@
 <template>
   <div class="fluid-container">
 
-    <Header @search="newSearch"/>
+    <Header @search="newSearch" @show="showThis" />
     <Main  :films='searchedFilms' />
     
   </div>
@@ -56,6 +56,11 @@ export default {
           this.popularFilms= result.data.results;
         }
       })
+    },
+    showThis (selection) {
+      let query = "https://api.themoviedb.org/3" + selection + "?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4";
+      console.log(query)
+      this.callApi(query)
     }
   }
 }

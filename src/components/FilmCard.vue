@@ -17,7 +17,7 @@
                     <span v-for="star in stars" :key="star">
                         <i class="fas fa-star"></i> 
                     </span>
-                    <span v-for="star in (5 - stars)" :key="star">
+                    <span v-for="(stars,index) in (5 - stars)" :key="index">
                         <i class="far fa-star"></i> 
                     </span>
                 </div>  
@@ -42,7 +42,7 @@ export default {
             return 'https://image.tmdb.org/t/p/w342'+ finalSrc;
         },
         getLanguage(lang) {
-            return require("../img/" + lang + ".jpg")
+            return require("../img/flags/" + lang + ".svg")
         }
     },
 }
