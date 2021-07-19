@@ -8,38 +8,44 @@
                 <h3>{{ film.title }} {{ film.name }}</h3>
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
 
-                <Language :language='film.original_language' />   
-                          
-                <Stars :stars="stars" />
+                <Language :language='film.original_language' /> 
+                <div>
+                    Voto: 
+                    <span v-for="star in stars" :key="star">
+                        <i class="fas fa-star"></i> 
+                    </span>
+                    <span v-for="star in (5 - stars)" :key="star">
+                        <i class="far fa-star"></i> 
+                    </span>
+                </div>  
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import Stars from './Stars.vue'
 import Language from './Language.vue'
 
 
 export default {
     name:'FilmCard',
     components:{
-        Stars,
         Language
     },
     props: {
         film:Object
+    },
+    computed: {
+        stars() {
+            return Math.round(this.film.vote_average / 2)
+        }
+
     },
     methods: {
         getSrc (finalSrc) {
             return 'https://image.tmdb.org/t/p/w342'+ finalSrc;
         },
     },
-    data() {
-        return {
-            stars: Math.round(this.film.vote_average / 2),
-        }
-    }
 }
 </script>
 
