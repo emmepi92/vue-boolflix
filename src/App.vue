@@ -24,12 +24,12 @@ export default {
     return {
       popularFilms:[],
       searchedFilms:[],
-      apiToCall:'https://api.themoviedb.org/3/movie/popular?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4',
+      popularQuery:'https://api.themoviedb.org/3/movie/popular?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4',
     }
   },
   created () {
     //chiamata Api con i film più popolari
-    this.callApi (this.apiToCall)
+    this.callApi (this.popularQuery)
   },
   methods: {
     //genero url della nuova chiamata
@@ -37,13 +37,13 @@ export default {
 
       if (inputText.trim() === '') {
         this.searchedFilms = this.popularFilms
-      } else {
-        
-        let apiToCallNew = 'https://api.themoviedb.org/3/search/multi?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
-        apiToCallNew += inputText;
+
+      } else {        
+        let newQuery = 'https://api.themoviedb.org/3/search/multi?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
+        newQuery += inputText;
   
         //chiamo l'api
-        this.callApi(apiToCallNew);
+        this.callApi(newQuery);
       }
     },
     //funzione per chiamare un Api con una nuova query

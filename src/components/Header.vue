@@ -1,7 +1,7 @@
 <template>
     <div class="header-container"> 
 
-        <img src="../img/logo-net.jpg" alt="">
+        <img src="../img/logo-net.jpg" alt="Logo Netflix" @click="$emit('search', '')">
         
         
         <div class="nav-menu">
