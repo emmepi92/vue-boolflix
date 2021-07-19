@@ -50,6 +50,7 @@ export default {
     width: 300px;
     position: relative;
     margin: 24px 12px;
+    overflow: hidden;  //alcuni poster sono più alti
 
     &:hover .info-film-container {
             opacity: 1;   
