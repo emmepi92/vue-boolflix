@@ -9,17 +9,13 @@
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
 
                 <div>Lingua: 
-                    <img :src="getLanguage(film.original_language)" alt="Lingua"> 
+                    <flag v-if="film.original_language=== 'en'" iso="us" />
+                    <flag v-else :iso="film.original_language" />
                 </div>
 
-                <div>
-                    Voto: 
-                    <span v-for="star in stars" :key="star">
-                        <i class="fas fa-star"></i> 
-                    </span>
-                    <span v-for="(stars,index) in (5 - stars)" :key="index">
-                        <i class="far fa-star"></i> 
-                    </span>
+                <div>Voto: 
+                    <i v-for="n in 5" :key="n" 
+                    class="fa-star" :class="isAFullStar(n)"></i> 
                 </div>  
             </div>
         </div>
@@ -41,8 +37,12 @@ export default {
         getSrc (finalSrc) {
             return 'https://image.tmdb.org/t/p/w342'+ finalSrc;
         },
-        getLanguage(lang) {
-            return require("../img/flags/" + lang + ".svg")
+        isAFullStar(star) {
+            if (star < this.stars) {
+                return 'fas'
+            } else {
+                return 'far'
+            }
         }
     },
 }
@@ -74,11 +74,6 @@ export default {
         width: 100%;
         height: 100%;
         background-color: rgba(0,0,0,0.7);
-
-        img {
-            width: 30px;
-            border: 1px solid #555;
-        }
     }
 }
 

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import FilmCard from "./FilmCard.vue"
+import FilmCard from "./FilmCard.vue" // non funzia con la @
 
 
 export default {
