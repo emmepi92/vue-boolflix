@@ -9,3 +9,23 @@ a {
 a:hover {
     color: inherit;
 }
+
+
+/* width */
+::-webkit-scrollbar {
+  height: 15px;
+  width: 10px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 5px;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 5px;
+}
+  

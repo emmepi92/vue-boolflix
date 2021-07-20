@@ -16,7 +16,7 @@
                 <div>Voto: 
                     <i v-for="n in 5" :key="n" 
                     class="fa-star" :class="isAFullStar(n)"></i> 
-                </div>  
+                </div> 
             </div>
         </div>
     </div>
