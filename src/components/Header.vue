@@ -16,7 +16,7 @@
         <div class="info-container">
             <i class="fas fa-search"></i>
             <input type="text" v-model="inputText">
-            <button @click="$emit('search', inputText)">Cerca</button>
+            <button @click="[$emit('search', inputText),clearInputText()]">Cerca</button>
             <div><a href="#">Bambini</a></div>
             <div><i class="fas fa-bell"></i></div>
             <div><a href="#">Profilo</a></div>
@@ -33,6 +33,11 @@ export default {
     data () {
         return {
             inputText:''
+        }
+    },
+    methods:{
+        clearInputText() {
+            this.inputText= '';
         }
     }
 }
