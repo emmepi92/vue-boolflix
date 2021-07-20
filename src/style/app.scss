@@ -1,6 +1,7 @@
 body {
     background-color: black;
     color: white;
+    padding-bottom: 24px;
 }
 a {
     color: inherit;
@@ -10,6 +11,15 @@ a:hover {
     color: inherit;
 }
 
+.films-container {
+  display: flex;
+  overflow-x: auto;
+}
+
+h1 {
+  margin-left: 24px;
+  margin-top: 24px;
+}
 
 /* width */
 ::-webkit-scrollbar {

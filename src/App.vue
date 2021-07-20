@@ -34,22 +34,38 @@ export default {
     this.callApi (this.popularQuery)
   },
   methods: {
-    //genero url della nuova chiamata
     searchFilms (inputText) {
 
-      let query  = 'https://api.themoviedb.org/3/search/movie?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
-      query +=inputText;
+      if (inputText.trim() === '') {
 
-      axios.get(query).then((result) => {
-         this.searchedFilms= result.data.results;
-      })      
+        this.searchedFilms = []
+
+      } else {
+
+        let query  = 'https://api.themoviedb.org/3/search/movie?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
+        query +=inputText;
+  
+        axios.get(query).then((result) => {
+           this.searchedFilms= result.data.results;
+        })      
+      }
+
     },
     searchSeries (inputText) {
-      let query = 'https://api.themoviedb.org/3/search/tv?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
-      query +=inputText;
-      axios.get(query).then((result) => {
-         this.searchedSeries= result.data.results;
-      })      
+
+      if (inputText.trim() === '') {
+
+        this.searchedSeries = []
+
+      } else {
+
+        let query = 'https://api.themoviedb.org/3/search/tv?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
+        query +=inputText;
+        
+        axios.get(query).then((result) => {
+           this.searchedSeries= result.data.results;
+        })      
+      }
     },
     //funzione per chiamare un Api con una nuova query
     //paramentro: query da passare

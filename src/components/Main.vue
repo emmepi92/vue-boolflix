@@ -1,46 +1,25 @@
 <template>
     <div class="popular-container">
 
-
         <div v-if="films.length === 0 && series.length === 0">
 
-            <h1>I più visti</h1>        
-            <div class="films-container">
-                <FilmCard class="single-film"
-                v-for="film in populars"
-                :key="film.id"
-                :film="film" />
-            </div>
+            <Popular :populars="populars" />
 
         </div>
-
 
         <div v-else>
-            <h1>Film</h1>
-            <div class="films-container">
-                <FilmCard class="single-film"
-                v-for="film in films"
-                :key="film.id"
-                :film="film" />
-            </div>
 
-            <h1>Serie</h1>
-            <div class="films-container">
-                <FilmCard class="single-film"
-                v-for="film in series"
-                :key="film.id"
-                :film="film" />
-            </div>
+            <Films :films="films" />
+            <Series :series="series" />
 
         </div>
-
-
-
     </div>
 </template>
 
 <script>
-import FilmCard from "./FilmCard.vue" // non funzia con la @
+import Series from './Series.vue'
+import Films from './Films.vue'
+import Popular from './Popular.vue'
 
 export default {
     name:'Main',
@@ -50,24 +29,13 @@ export default {
         series:Array
     },
     components: {
-        FilmCard
+        Series,
+        Films,
+        Popular
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.popular-container {
-
-    h1 {
-        margin-left: 24px;
-        margin-top: 24px;
-
-    }
-
-    .films-container {
-        display: flex;
-        overflow-x: auto;
-    }
-}
 
 </style>
