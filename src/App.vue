@@ -1,8 +1,11 @@
 <template>
   <div class="fluid-container">
 
-    <Header @search="[searchFilms($event),searchSeries($event)]" @show="showThis" />
-    <Main :populars='popularFilms' :films='searchedFilms' :series='searchedSeries' />
+    <Header @search="searchTvAndMovie" />
+    <Main :populars='popularFilms' 
+    :series='searchedSeries'
+    :films='searchedFilms' 
+    />
     
   </div>
 </template>
@@ -34,38 +37,27 @@ export default {
     this.callApi (this.popularQuery)
   },
   methods: {
-    searchFilms (inputText) {
+    searchTvAndMovie (inputText) {
 
       if (inputText.trim() === '') {
 
-        this.searchedFilms = []
+        this.searchedFilms = [];
+        this.searchedSeries = [];        
 
       } else {
-
-        let query  = 'https://api.themoviedb.org/3/search/movie?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
-        query +=inputText;
-  
-        axios.get(query).then((result) => {
-           this.searchedFilms= result.data.results;
-        })      
+        axios.get(this.tvOrMovie('tv',inputText)).then((result) => {
+           this.searchedSeries = result.data.results;
+        })  
+        axios.get(this.tvOrMovie('movie',inputText)).then((result) => {
+           this.searchedFilms = result.data.results;
+        }) 
       }
-
     },
-    searchSeries (inputText) {
-
-      if (inputText.trim() === '') {
-
-        this.searchedSeries = []
-
-      } else {
-
-        let query = 'https://api.themoviedb.org/3/search/tv?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=';
-        query +=inputText;
-        
-        axios.get(query).then((result) => {
-           this.searchedSeries= result.data.results;
-        })      
-      }
+    //ritorna l'url cambiando tv/movie con l'input
+    tvOrMovie(tvOrMovie, inputText) { 
+      let query = `https://api.themoviedb.org/3/search/${tvOrMovie}?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=${inputText}`;
+      console.log(query)
+      return query
     },
     //funzione per chiamare un Api con una nuova query
     //paramentro: query da passare
@@ -73,12 +65,6 @@ export default {
         axios.get(newQuery).then((result)=>{
         this.popularFilms= result.data.results;
       })
-    },
-    //metodo per cambiare le liste cliccando su la nav-bar
-    showThis (selection) {
-      let query = "https://api.themoviedb.org/3" + selection + "?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4";
-      console.log(query)
-      this.callApi(query)
     }
   }
 }

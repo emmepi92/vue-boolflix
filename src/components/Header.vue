@@ -1,15 +1,15 @@
 <template>
     <div class="header-container"> 
 
-        <img src="../img/logo-net.jpg" alt="Logo Netflix" @click="$emit('search', '')">
+        <img src="../img/logo-net.jpg" alt="Logo Netflix">
         
         
         <div class="nav-menu">
-            <div><a href="#" @click="$emit('show','/tv/on_the_air')">Home</a></div>
-            <div><a href="#" @click="$emit('show','/discover/tv')">Serie Tv</a></div>
-            <div><a href="#" @click="$emit('show','/movie/top_rated')">Film</a></div>
-            <div><a href="#" @click="$emit('show','/discover/tv')">Originali</a></div>
-            <div><a href="#" @click="$emit('show','/movie/upcoming')">Aggiunti di recente</a></div>  
+            <div><a href="#">Home</a></div>
+            <div><a href="#">Serie Tv</a></div>
+            <div><a href="#">Film</a></div>
+            <div><a href="#">Originali</a></div>
+            <div><a href="#">Aggiunti di recente</a></div>  
             <div><a href="#">La mia lista</a></div>
         </div>
 
