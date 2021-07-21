@@ -1,7 +1,6 @@
 <template>
     <div>
-        <div class="film-content">
-            <img :src="getSrc(film.poster_path)" :alt="film.original_title || film.original_name ">            
+        <div class="film-content" :style="getUrl(film.poster_path)">
 
             <div class="info-film-container">
 
@@ -34,12 +33,15 @@ export default {
         }
     },
     methods: {
-        getSrc (finalSrc) {
-            return 'https://image.tmdb.org/t/p/w342'+ finalSrc;
+        getUrl (string) {
+            if ( string === null) {
+            return `background-color: red;` 
+            }
+            return `background-image:url('https://image.tmdb.org/t/p/w342${string}')` 
         },
         isAFullStar(star) {
             if (star < this.stars) {
-                return 'fas'
+                return 'fas red'
             } else {
                 return 'far'
             }
@@ -55,7 +57,7 @@ export default {
     width: 300px;
     position: relative;
     margin: 24px 12px;
-    overflow: hidden;  //alcuni poster sono più alti
+    background-size: cover;
 
     &:hover .info-film-container {
             opacity: 1;   

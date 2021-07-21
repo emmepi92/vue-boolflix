@@ -49,15 +49,13 @@ export default {
            this.searchedSeries = result.data.results;
         })  
         axios.get(this.tvOrMovie('movie',inputText)).then((result) => {
-           this.searchedFilms = result.data.results;
+           this.searchedFilms = result.data.results; 
         }) 
       }
     },
     //ritorna l'url cambiando tv/movie con l'input
     tvOrMovie(tvOrMovie, inputText) { 
-      let query = `https://api.themoviedb.org/3/search/${tvOrMovie}?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=${inputText}`;
-      console.log(query)
-      return query
+      return  `https://api.themoviedb.org/3/search/${tvOrMovie}?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4&query=${inputText}`;      
     },
     //funzione per chiamare un Api con una nuova query
     //paramentro: query da passare

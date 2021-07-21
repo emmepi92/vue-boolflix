@@ -1,11 +1,19 @@
 <template>
     <div>
         <h1>Serie</h1>
-        <div class="films-container">
-            <FilmCard class="single-film"
-            v-for="film in series"
-            :key="film.id"
-            :film="film" />
+        <div v-if="series.length !== 0">
+            <div class="films-container">
+                <FilmCard class="single-film"
+                v-for="film in series"
+                :key="film.id"
+                :film="film" />
+            </div>
+        </div>
+
+        <div v-else>
+            <p>
+                Nessuna serie trovata
+            </p>
         </div>
 
     </div>
