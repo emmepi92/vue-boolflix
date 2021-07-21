@@ -25,7 +25,8 @@ export default {
 
   data() {
     return {
-      popularFilms:[],    //dove salvo il risultato della prima chiamata API
+      popularFilms:[],    //dove salvo il risultato della ricerca nella nav-bar
+      popularFilmsCopy:[],//dove salvo il risultato della prima chiamata API
       searchedFilms:[],   //dove salvo il risultato delle ricerche in film
       searchedSeries:[],  //dove salvo il risultato delle ricerche in serie
       //la prima chiamata che mi popola l'array di default => popular
@@ -41,20 +42,22 @@ export default {
     showNavBar(string) {
 
       // reset se dopo una ricerca, clicchi su serie
-      this.searchedFilms = [];
-      this.searchedSeries = [];
+      this.reset ()
 
       this.popularQuerySeries = `https://api.themoviedb.org/3${string}?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4`;
       this.callApi (this.popularQuerySeries)
+    },
+    reset () {
+      this.searchedFilms = [];
+      this.searchedSeries = [];
     },
     searchTvAndMovie (inputText) {
 
       if (inputText.trim() === '') {
 
         //mostra i film popolari se clicchi su serie e poi fai una ricerca 'vuota'
-        this.callApi (this.popularQuery);
-        this.searchedFilms = [];
-        this.searchedSeries = [];        
+        this.popularFilms = this.popularFilmsCopy;
+        this.reset ()      
 
       } else {
         axios.get(this.tvOrMovie('tv',inputText)).then((result) => {
@@ -74,6 +77,10 @@ export default {
     callApi (query) {
         axios.get(query).then((result)=>{
         this.popularFilms= result.data.results;
+
+        if(this.popularFilmsCopy.length === 0) {
+          this.popularFilmsCopy = result.data.results;
+        }
       })
     }
   }
