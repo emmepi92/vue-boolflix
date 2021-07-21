@@ -9,7 +9,7 @@
             <div><a href="#" @click="$emit('searchSeries','/tv/popular')">Serie Tv</a></div>
             <div><a href="#" @click="$emit('searchSeries','/movie/top_rated')">Film</a></div>
             <div><a href="#">Originali</a></div>
-            <div><a href="#">Aggiunti di recente</a></div>  
+            <div><a href="#" @click="$emit('searchSeries','/movie/upcoming')">Aggiunti di recente</a></div>  
             <div><a href="#">La mia lista</a></div>
         </div>
 

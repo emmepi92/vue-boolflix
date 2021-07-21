@@ -3,7 +3,8 @@
 
         <div v-if="films.length === 0 && series.length === 0">
 
-            <Popular :populars="populars" />
+            <Popular :populars="populars"
+            :flagTitle='flagTitle' />
 
         </div>
 
@@ -27,7 +28,8 @@ export default {
     props: {
         films:Array,
         populars:Array,
-        series:Array
+        series:Array,
+        flagTitle:Boolean
     },
     components: {
         Series,

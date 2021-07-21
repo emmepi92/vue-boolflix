@@ -5,6 +5,7 @@
     <Main :populars='popularFilms' 
     :series='searchedSeries'
     :films='searchedFilms' 
+    :flagTitle='flagChangeTitle'
     />
     
   </div>
@@ -31,7 +32,8 @@ export default {
       searchedSeries:[],  //dove salvo il risultato delle ricerche in serie
       //la prima chiamata che mi popola l'array di default => popular
       popularQuery:'https://api.themoviedb.org/3/movie/popular?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4', 
-      popularQuerySeries: ''
+      popularQuerySeries: '',
+      flagChangeTitle:false
     }
   },
   created () {
@@ -44,6 +46,12 @@ export default {
       // reset se dopo una ricerca, clicchi su serie
       this.reset ()
 
+      if (string === '/movie/upcoming') {
+        this.flagChangeTitle = true
+      } else {
+        this.flagChangeTitle = false
+      }
+
       this.popularQuerySeries = `https://api.themoviedb.org/3${string}?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4`;
       this.callApi (this.popularQuerySeries)
     },
@@ -52,6 +60,9 @@ export default {
       this.searchedSeries = [];
     },
     searchTvAndMovie (inputText) {
+
+      //reset => se dopo aver visto le ultime uscite => faccio una ricerca vuota
+      this.flagChangeTitle = false
 
       if (inputText.trim() === '') {
 

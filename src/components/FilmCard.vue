@@ -8,8 +8,7 @@
                 <div>Titolo Originale: {{ film.original_title }} {{ film.original_name }}</div>
 
                 <div>Lingua: 
-                    <flag v-if="film.original_language=== 'en'" iso="us" />
-                    <flag v-else :iso="film.original_language" />
+                    <flag :iso="languanteToNation(film.original_language)" />
                 </div>
 
                 <div>Voto: 
@@ -33,6 +32,17 @@ export default {
         }
     },
     methods: {
+        // usare un api di nazioni con in input l'acronimodella lingua non è il massimo
+        languanteToNation(lang) {
+            if (lang==='en') {
+                return 'us'
+            } else if (lang==='ja') {
+                return 'jp'
+            } else if (lang==='hi') {
+                return 'in'
+            }
+            return lang
+        },
         getUrl (string) {
             if ( string === null) {
             return `background-image:url('https://www.staynerd.com/wp-content/uploads/2021/05/netflix-film-piu-visti.jpg')` 
