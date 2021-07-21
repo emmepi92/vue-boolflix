@@ -35,7 +35,7 @@ export default {
     methods: {
         getUrl (string) {
             if ( string === null) {
-            return `background-color: red;` 
+            return `background-image:url('https://www.staynerd.com/wp-content/uploads/2021/05/netflix-film-piu-visti.jpg')` 
             }
             return `background-image:url('https://image.tmdb.org/t/p/w342${string}')` 
         },
@@ -58,6 +58,7 @@ export default {
     position: relative;
     margin: 24px 12px;
     background-size: cover;
+    background-position: center;
 
     &:hover .info-film-container {
             opacity: 1;   
