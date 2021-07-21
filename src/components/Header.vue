@@ -5,9 +5,9 @@
         
         
         <div class="nav-menu">
-            <div><a href="#">Home</a></div>
-            <div><a href="#">Serie Tv</a></div>
-            <div><a href="#">Film</a></div>
+            <div><a href="#" @click="$emit('search', '')">Home</a></div>
+            <div><a href="#" @click="$emit('searchSeries','/tv/popular')">Serie Tv</a></div>
+            <div><a href="#" @click="$emit('searchSeries','/movie/top_rated')">Film</a></div>
             <div><a href="#">Originali</a></div>
             <div><a href="#">Aggiunti di recente</a></div>  
             <div><a href="#">La mia lista</a></div>

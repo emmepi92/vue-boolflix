@@ -10,6 +10,7 @@
         <div v-else>
 
             <Films :films="films" />
+            
             <Series :series="series" />
 
         </div>

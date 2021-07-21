@@ -1,7 +1,7 @@
 <template>
   <div class="fluid-container">
 
-    <Header @search="searchTvAndMovie" />
+    <Header @search="searchTvAndMovie" @searchSeries="showNavBar" />
     <Main :populars='popularFilms' 
     :series='searchedSeries'
     :films='searchedFilms' 
@@ -30,6 +30,7 @@ export default {
       searchedSeries:[],  //dove salvo il risultato delle ricerche in serie
       //la prima chiamata che mi popola l'array di default => popular
       popularQuery:'https://api.themoviedb.org/3/movie/popular?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4', 
+      popularQuerySeries: ''
     }
   },
   created () {
@@ -37,10 +38,21 @@ export default {
     this.callApi (this.popularQuery)
   },
   methods: {
+    showNavBar(string) {
+
+      // reset se dopo una ricerca, clicchi su serie
+      this.searchedFilms = [];
+      this.searchedSeries = [];
+
+      this.popularQuerySeries = `https://api.themoviedb.org/3${string}?api_key=26dda2d32d2ca2cdf1b60e2b114c69b4`;
+      this.callApi (this.popularQuerySeries)
+    },
     searchTvAndMovie (inputText) {
 
       if (inputText.trim() === '') {
 
+        //mostra i film popolari se clicchi su serie e poi fai una ricerca 'vuota'
+        this.callApi (this.popularQuery);
         this.searchedFilms = [];
         this.searchedSeries = [];        
 
@@ -59,8 +71,8 @@ export default {
     },
     //funzione per chiamare un Api con una nuova query
     //paramentro: query da passare
-    callApi (newQuery) {
-        axios.get(newQuery).then((result)=>{
+    callApi (query) {
+        axios.get(query).then((result)=>{
         this.popularFilms= result.data.results;
       })
     }
