@@ -1,7 +1,7 @@
 <template>
     <div class="header-container"> 
 
-        <img src="../img/logo-net.jpg" alt="Logo Netflix">
+        <img  @click="$emit('search', '')" src="../img/logo-net.jpg" alt="Logo Netflix">
         
         
         <div class="nav-menu">
@@ -14,9 +14,17 @@
         </div>
 
         <div class="info-container">
-            <i class="fas fa-search"></i>
-            <input type="text" v-model="inputText">
-            <button @click="[$emit('search', inputText),clearInputText()]">Cerca</button>
+            <div @click="showInputSearch()">
+                <i class="fas fa-search" ></i>
+            </div>
+
+            <div class="search-container" >
+                <div v-if="flagInputActive">
+                    <input type="text" v-model="inputText" autofocus>
+                    <button @click="[$emit('search', inputText),clearInputText()]">Cerca</button>
+                </div>
+            </div>
+
             <div><a href="#">Bambini</a></div>
             <div><i class="fas fa-bell"></i></div>
             <div><a href="#">Profilo</a></div>
@@ -32,12 +40,21 @@ export default {
     ,
     data () {
         return {
-            inputText:''
+            inputText:'',
+            flagInputActive: false
         }
     },
     methods:{
         clearInputText() {
             this.inputText= '';
+            this.flagInputActive = false;
+        },
+        showInputSearch() {
+            if (this.flagInputActive=== false) {
+                this.flagInputActive = true
+            } else {
+                this.flagInputActive = false
+            }
         }
     }
 }
@@ -75,6 +92,7 @@ export default {
         
         .fa-search {
             font-size: 20px;
+            cursor: pointer;
         }
 
         div {
