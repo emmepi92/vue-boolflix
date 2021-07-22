@@ -65,7 +65,6 @@ export default {
 .film-content {
     height: 450px;
     width: 300px;
-    position: relative;
     margin: 24px 12px;
     background-size: cover;
     background-position: center;
@@ -80,9 +79,7 @@ export default {
 
     .info-film-container {
         padding-top: 100px;
-        position: absolute;
         text-align: center;
-        top:0;
         opacity: 0;
         width: 100%;
         height: 100%;
